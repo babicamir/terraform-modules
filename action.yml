@@ -77,7 +77,7 @@ runs:
         pwd
 
 
-    - name: Test
+    - name: Terraform init
       id: terraform-init
       shell: bash
       run: |
