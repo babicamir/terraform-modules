@@ -8,6 +8,11 @@ inputs:
   env: 
     required: true
     description: "Current environment"
+  name: 
+    required: true
+    description: "Resource environment"
+
+
   # aws_access_key_id: 
   #   required: true
   #   description: "The aws_access_key_id used by Github to authenticate with AWS" 
