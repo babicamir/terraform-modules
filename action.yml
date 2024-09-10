@@ -95,6 +95,11 @@ runs:
         echo "${{ inputs.name }}"
 
 
+
+        for DIR in ${{ inputs.name }}; do
+          echo "$DIR was changed"
+        done
+
     - name: Test
       working-directory: ${{ inputs.dir }}
       id: test
