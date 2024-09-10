@@ -73,3 +73,12 @@ runs:
         echo "TESTING"
         echo "${{ inputs.project-name }}"
         echo "${{ inputs.env }}"
+        ls
+        pwd
+
+
+    - name: Test
+      id: terraform-init
+      shell: bash
+      run: |
+        terraform init
