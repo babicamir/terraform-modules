@@ -65,19 +65,35 @@ inputs:
 
 runs:
   using: composite
+
+  
   steps:
+
+
+    - name: Checkout terraform repo
+      uses: actions/checkout@v4
+      with:
+        repository: babicamir/terraform-modules
+
+
+
+
+
     - name: Test
+      working-directory: ${{ inputs.dir }}
       id: test
       shell: bash
       run: |
         echo "TESTING"
         echo "${{ inputs.project-name }}"
         echo "${{ inputs.env }}"
+        echo "${{ inputs.name }}"
         ls
         pwd
 
 
     - name: Terraform init
+      working-directory: ${{ inputs.dir }}
       id: terraform-init
       shell: bash
       run: |
