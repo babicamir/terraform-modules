@@ -97,6 +97,7 @@ runs:
 
 
         for DIR in ${{ inputs.name }}; do
+          echo "-------------"
           echo "$DIR was changed"
         done
 
