@@ -82,3 +82,9 @@ runs:
       shell: bash
       run: |
         terraform init
+
+    # - name: Terraform init
+    #   id: terraform-plan
+    #   shell: bash
+    #   run: |
+    #     terraform plan -var-file="path/to/your/variables.tfvars"
