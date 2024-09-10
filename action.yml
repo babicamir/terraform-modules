@@ -1,0 +1,75 @@
+#This workflow will run as composite and deploy corresponding terraform resources to AWS account
+name: Deploy Terraform resources to AWS Account
+description: "Deploy Terraform resources to AWS"
+inputs:
+  project-name: 
+    required: true
+    description: "Project (client) name"
+  env: 
+    required: true
+    description: "Current environment"
+  # aws_access_key_id: 
+  #   required: true
+  #   description: "The aws_access_key_id used by Github to authenticate with AWS" 
+  # aws_secret_access_key: 
+  #   required: true
+  #   description: "The aws_secret_access_key used by Github to authenticate with AWS"       
+  # role_to_assume: 
+  #   required: true
+  #   description: "Cross account role to assume"
+  # role_session_name: 
+  #   required: true
+  #   description: "The name to tag session"
+  # role_duration_seconds:
+  #   required: false
+  #   description: "Number of seconds for terraform to assume role and perform actions. Default 3600 seconds"
+  # aws_region: 
+  #   required: true
+  #   description: "The aws region where the Terraform resources will be deployed"   
+  # environment_level:
+  #   description: "Environment variable nprd or prd"
+  #   required: true
+  # deploy_stage:
+  #   description: "Environment variable for stage. ie dev, qa, qa2, perf, prod"
+  #   required: true
+  # tf_dir:
+  #   description: "Directory path where Terraform will be initialized"
+  #   required: true
+  # workspace_key:
+  #   description: "The name of the key to append to terraform workspace. Key should be unique to every stack. Eg. sftp-esg, iam-esg, lambda-esg"
+  #   required: true
+  # GH_PAT:
+  #   description: "Personal Access Token for Github Cross repo access"
+  #   required: true
+  # python_version:
+  #   description: "Python version to be installed on the hosted runner"
+  #   required: false
+  # create_badge:
+  #   description: "Create badge, requires repo secret gist_secret, gist user, and gist id"
+  #   required: false
+  #   default: 'false'
+  # gist_secret:
+  #   description: "Repo secret for Gist"
+  #   required: false
+  #   default: ''
+  # gist_id:
+  #   description: "Gist Id"
+  #   required: false
+  #   default: '9b3b980c1edf7cc4e50203cc8d5b2b59'
+  # gist_user:
+  #   description: "Gist User"
+  #   required: false
+  #   default: 'platform-orchestration-moodys'
+
+
+
+runs:
+  using: composite
+  steps:
+    - name: Test
+      id: test
+      shell: bash
+      run: |
+        echo "TESTING"
+        echo "${{ inputs.project-name }}"
+        echo "${{ inputs.env }}"
