@@ -86,7 +86,7 @@ runs:
 
     - name: Print inputs
       working-directory: ${{ inputs.dir }}
-      id: test
+      id: print-inputs
       shell: bash
       run: |
         echo "TESTING"
