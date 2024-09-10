@@ -84,7 +84,7 @@ runs:
 
 
 
-    - name: Test
+    - name: Print inputs
       working-directory: ${{ inputs.dir }}
       id: test
       shell: bash
@@ -93,6 +93,14 @@ runs:
         echo "${{ inputs.project-name }}"
         echo "${{ inputs.env }}"
         echo "${{ inputs.name }}"
+
+
+    - name: Test
+      working-directory: ${{ inputs.dir }}
+      id: test
+      shell: bash
+      run: |
+        echo "List files:"
         ls
         pwd
 
