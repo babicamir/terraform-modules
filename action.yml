@@ -123,3 +123,15 @@ runs:
     #   shell: bash
     #   run: |
     #     terraform plan -var-file="path/to/your/variables.tfvars"
+
+
+
+
+
+  # terraform-validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+  #   - name: Validate Terraform configuration
+  #     uses: devops-infra/action-terraform-validate@v0.3.1
