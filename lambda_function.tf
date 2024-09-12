@@ -8,6 +8,7 @@ resource "aws_cloudwatch_log_group" "lambda" {
 
 resource "aws_lambda_function" "lambda" {
   filename      = "lambda.zip"
+  source_code_hash = filebase64sha256("lambda.zip")
   function_name = "${var.project-name}-${var.env}-${var.name}"
   role          = var.role
   architectures = var.architectures
