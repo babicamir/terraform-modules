@@ -50,9 +50,10 @@ variable "ephemeral_storage_size" {
 variable "log_retention_days" {
   type        = string
 }
-
-
-
+variable "enable_lambda_layer" {
+  type        = bool
+  default     = false
+}
 
 
 
