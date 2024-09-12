@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_group" "lambda" {
-  name              = "/aws/lambda/${var.name}"
+  name              = "/aws/lambda/${var.project-name}-${var.env}-${var.name}"
   retention_in_days = var.log_retention_days
   tags = {
     CostType = "logs"
@@ -7,15 +7,15 @@ resource "aws_cloudwatch_log_group" "lambda" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename      = var.filename
+  #filename      = var.filename
   function_name = "${var.project-name}-${var.env}-${var.name}"
-  role          = var.lambda_role
-  architectures = ["x86_64"]
+  role          = var.role
+  architectures = var.architectures
   handler       = var.handler
   runtime       = var.runtime
   memory_size   = var.memory_size
   timeout       = var.timeout
-  layers        = var.layers
+  #layers        = var.layers
   ephemeral_storage {
     size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
   }

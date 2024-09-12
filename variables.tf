@@ -18,9 +18,47 @@ variable "aws-region" {
   type        = string
 }
 
+ 
 
-variable "key" {
-  description = "The path to the state file inside the bucket"
+##########################################################
+# Lambda Variables
+##########################################################
+variable "role" {
   type        = string
-  default = "solution-1-terraform.tfstate"
 }
+variable "subnet_ids" {
+  type        = string
+}
+variable "security_group_ids" {
+  type        = string
+}
+variable "architectures" {
+}
+variable "handler" {
+  type        = string
+}
+variable "runtime" {
+  type        = string
+}
+variable "memory_size" {
+  type        = string
+}
+variable "timeout" {
+  type        = string
+}
+variable "ephemeral_storage_size" {
+  type        = string
+}
+variable "log_retention_days" {
+  type        = string
+}
+
+
+
+
+
+
+
+
+
+ 
