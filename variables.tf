@@ -53,7 +53,8 @@ variable "enable_lambda_layer" {
   type        = bool
   default     = false
 }
-
+variable "environment_variables" {
+}
 
 
 
