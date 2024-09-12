@@ -19,3 +19,8 @@ variable "aws-region" {
 }
 
 
+variable "key" {
+  description = "The path to the state file inside the bucket"
+  type        = string
+  default = "solution-1-terraform.tfstate"
+}

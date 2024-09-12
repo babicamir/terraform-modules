@@ -21,7 +21,7 @@ terraform {
    backend "s3" {
       bucket = "terraform-lambda-poc-amir"
       region = "us-east-1"
-      key = "solution-1-terraform.tfstate"
+      key = var.key
       workspace_key_prefix = "solution-1"  #Team/project name
    }
 
