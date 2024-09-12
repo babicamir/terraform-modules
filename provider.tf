@@ -18,12 +18,15 @@ terraform {
   # Terraform CLI version
   #required_version = "1.9.1"
 
-   backend "s3" {
-      bucket = "terraform-lambda-poc-amir"
-      region = "us-east-1"
-      key = var.key
-      workspace_key_prefix = "solution-1"  #Team/project name
-   }
+  #  backend "s3" {
+  #     bucket = "terraform-lambda-poc-amir"
+  #     region = "us-east-1"
+  #     key = var.key
+  #     workspace_key_prefix = "solution-1"  #Team/project name
+  #  }
+
+
+  backend "s3" {}
 
   required_providers {
     # AWS
