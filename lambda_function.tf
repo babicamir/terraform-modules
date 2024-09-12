@@ -7,7 +7,7 @@ resource "aws_cloudwatch_log_group" "lambda" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  #filename      = var.filename
+  filename      = "lambda.zip"
   function_name = "${var.project-name}-${var.env}-${var.name}"
   role          = var.role
   architectures = var.architectures
