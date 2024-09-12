@@ -22,7 +22,7 @@ terraform {
       bucket = "terraform-lambda-poc-amir"
       region = "us-east-1"
       key = "solution-1-terraform.tfstate"
-      workspace_key_prefix = "${var.project-name}"  #Team/project name
+      workspace_key_prefix = "solution-1"  #Team/project name
    }
 
   required_providers {
