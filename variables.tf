@@ -36,7 +36,6 @@ variable "handler" {
   type        = string
 }
 variable "runtime" {
-  type        = string
 }
 variable "memory_size" {
   type        = string
