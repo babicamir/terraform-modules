@@ -13,3 +13,9 @@ variable "name" {
   description = "Resource name"
   type        = string
 }
+variable "aws-region" {
+  description = "AWS region name"
+  type        = string
+}
+
+

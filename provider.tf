@@ -18,12 +18,12 @@ terraform {
   # Terraform CLI version
   #required_version = "1.9.1"
 
-#    backend "s3" {
-#       bucket = "platform-orchestration-ss-terraform-data"
-#       region = "us-east-1"
-#       key = "terraform.tfstate"
-#       workspace_key_prefix = "esgc-solutions-platform"  #Team/project name
-#    }
+   backend "s3" {
+      bucket = "terraform-lambda-poc-amir"
+      region = "us-east-1"
+      key = "${var.name}-${env}-${var.aws-region}-terraform.tfstate"
+      workspace_key_prefix = "${var.project-name}"  #Team/project name
+   }
 
   required_providers {
     # AWS
