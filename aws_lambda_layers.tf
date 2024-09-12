@@ -3,6 +3,6 @@ resource "aws_lambda_layer_version" "lambda" {
   layer_name          = "${var.project-name}-${var.env}-${var.name}"
   description         = "Description test"
   compatible_runtimes = ["${var.runtime}"]
-  s3_bucket           = "lambda-layers"
-  s3_key              = "assemblyai_layer/assemblyai_layer.zip"
+  s3_bucket           = "amir-test-test-1"
+  s3_key              = "test.zip"
 }
