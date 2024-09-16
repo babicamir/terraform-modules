@@ -9,7 +9,13 @@ provider "aws" {
       Environment = var.env
     }
   }
+
+  assume_role {
+    role_arn = var.deployment_role
+  }
+
 }
+
 
 ##########################################
 # Other providers

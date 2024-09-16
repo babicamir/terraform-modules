@@ -20,9 +20,19 @@ resource "aws_lambda_function" "lambda" {
   ephemeral_storage {
     size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
   }
-  # environment {
-  #   variables = var.environment_variables
-  # }
+  vpc_config {
+    subnet_ids         = var.subnet_ids
+    security_group_ids = var.security_group_ids
+  }
+  dynamic "tracing_config" {
+    for_each = var.tracing_mode == null ? [] : [true]
+    content {
+      mode = var.tracing_mode
+    }
+  }
+
+
+  
 
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]
@@ -34,10 +44,7 @@ resource "aws_lambda_function" "lambda" {
 
 
 
-  vpc_config {
-    subnet_ids         = var.subnet_ids
-    security_group_ids = var.security_group_ids
-  }
+
   tags = {
     Name         = "${var.project-name}-${var.env}-${var.name}"
     BackupPolicy = "n/a"
