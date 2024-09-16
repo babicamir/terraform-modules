@@ -22,7 +22,7 @@ variable "aws-region" {
 ##########################################################
 # Lambda Variables
 ##########################################################
-variable "role" {
+variable "lambda-role" {
   type        = string
 }
 variable "subnet_ids" {

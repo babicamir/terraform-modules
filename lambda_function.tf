@@ -10,7 +10,7 @@ resource "aws_lambda_function" "lambda" {
   filename      = "lambda.zip"
   source_code_hash = filebase64sha256("lambda.zip")
   function_name = "${var.project-name}-${var.env}-${var.name}"
-  role          = var.role
+  role          = var.lambda-role
   architectures = var.architectures
   handler       = var.handler
   runtime       = var.runtime
