@@ -11,7 +11,7 @@ provider "aws" {
   }
 
   assume_role {
-    role_arn = var.deployment_role
+    role_arn = var.deployment-role
   }
 
 }
