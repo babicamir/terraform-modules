@@ -65,3 +65,9 @@ variable "tracing_mode" {
 variable "deployment-role" {
   type        = string
 }
+
+variable "provisioned_concurrent_executions" {
+  description = "Amount of capacity to allocate. Set to 1 or greater to enable, or set to 0 to disable provisioned concurrency."
+  type        = number
+  default     = -1
+}

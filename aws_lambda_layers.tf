@@ -51,3 +51,25 @@ resource "aws_lambda_layer_version" "lambda" {
 
 #   depends_on = [null_resource.archive]
 # }
+
+
+# resource "aws_lambda_layer_version" "this" {
+#   count = local.create && var.create_layer ? 1 : 0
+
+#   layer_name   = var.layer_name
+#   description  = var.description
+#   license_info = var.license_info
+
+#   compatible_runtimes      = length(var.compatible_runtimes) > 0 ? var.compatible_runtimes : [var.runtime]
+#   compatible_architectures = var.compatible_architectures
+#   skip_destroy             = var.layer_skip_destroy
+
+#   filename         = local.filename
+#   source_code_hash = var.ignore_source_code_hash ? null : (local.filename == null ? false : fileexists(local.filename)) && !local.was_missing ? filebase64sha256(local.filename) : null
+
+#   s3_bucket         = local.s3_bucket
+#   s3_key            = local.s3_key
+#   s3_object_version = local.s3_object_version
+
+#   depends_on = [null_resource.archive, aws_s3_object.lambda_package]
+# }
