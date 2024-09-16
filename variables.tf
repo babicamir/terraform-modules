@@ -57,21 +57,11 @@ variable "lambda-layer-description" {
   default     = ""
 }
 
-
-
 variable "environment_variables" {
 }
-
 variable "tracing_mode" {
   default     = "Active"
 }
-
-
-variable "tracing_mode" {
-  default     = "Active"
-}
-
-
 variable "deployment-role" {
   type        = string
 }
