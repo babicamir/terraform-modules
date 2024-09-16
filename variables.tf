@@ -52,11 +52,15 @@ variable "enable_lambda_layer" {
   type        = bool
   default     = false
 }
+
 variable "lambda-layer-description" {
   type        = string
   default     = ""
 }
-
+variable "create_lambda_layer_version" {
+  type        = bool
+  default     = false
+}
 variable "environment_variables" {
 }
 variable "tracing_mode" {
@@ -71,3 +75,4 @@ variable "provisioned_concurrent_executions" {
   type        = number
   default     = -1
 }
+

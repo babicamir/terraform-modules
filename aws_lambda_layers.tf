@@ -3,7 +3,7 @@ resource "aws_lambda_layer_version" "lambda" {
   layer_name          = "${var.project-name}-${var.env}-${var.name}"
   description         = var.lambda-layer-description
   compatible_runtimes = ["${var.runtime}"]
-  s3_bucket           = "amir-test-test-1"
+  s3_bucket           = "amir-dev-test-1"
   s3_key              = "test.zip"
 }
 
