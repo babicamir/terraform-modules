@@ -16,7 +16,7 @@ resource "aws_lambda_function" "lambda" {
   runtime       = var.runtime
   memory_size   = var.memory_size
   timeout       = var.timeout
-  #layers        = var.layers
+  layers        = var.layers
   ephemeral_storage {
     size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
   }
