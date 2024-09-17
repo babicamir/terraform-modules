@@ -16,7 +16,7 @@ resource "aws_lambda_function" "lambda" {
   runtime       = var.runtime
   memory_size   = var.memory_size
   timeout       = var.timeout
-  
+  layers        = [for layer in data.aws_lambda_layer_version.lambda : layer.arn]
   ephemeral_storage {
     size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
   }
@@ -30,10 +30,6 @@ resource "aws_lambda_function" "lambda" {
       mode = var.tracing_mode
     }
   }
-
-
-  
-
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]
     content {
@@ -45,25 +41,10 @@ resource "aws_lambda_function" "lambda" {
     BackupPolicy = "n/a"
     AccessTier   = "private"
     CostType     = "lambda"
-  }
-
-  layers        = [for layer in data.aws_lambda_layer_version.instabot : layer.arn]
+  }  
 }
 
-
-
-data "aws_lambda_layer_version" "instabot" {
+data "aws_lambda_layer_version" "lambda" {
   for_each = toset(var.lambda_layer_versions)
   layer_name = each.value
 }
-
-
-
-
-# resource "aws_lambda_permission" "lambda" {
-#   statement_id  = "AllowExecutionFromS3Bucket"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.lambda.arn
-#   principal     = "s3.amazonaws.com"
-#   source_arn    = "arn:aws:s3:::${var.name}-${var.env}"
-# }
