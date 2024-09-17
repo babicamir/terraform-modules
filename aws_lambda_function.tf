@@ -47,7 +47,9 @@ resource "aws_lambda_function" "lambda" {
     CostType     = "lambda"
   }
 
-  layers        = [data.aws_lambda_layer_version.instabot[0].arn]
+  layers        = [
+    data.aws_lambda_layer_version.instabot[0].arn
+    ]
 }
 
 
@@ -56,6 +58,12 @@ data "aws_lambda_layer_version" "instabot" {
   for_each = toset(var.lambda_layer_versions)
   layer_name = each.value
 }
+
+
+output "layer_arns" {
+  value = { for k, v in data.aws_lambda_layer_version.instabot : k => v.arn }
+}
+
 
 
 # resource "aws_lambda_permission" "lambda" {
