@@ -69,16 +69,24 @@ variable "tracing_mode" {
 variable "deployment-role" {
   type        = string
 }
-
 variable "provisioned_concurrent_executions" {
   description = "Amount of capacity to allocate. Set to 1 or greater to enable, or set to 0 to disable provisioned concurrency."
   type        = number
   default     = -1
 }
-
 variable "lambda_layers" {
   description = "List of Lambda layer versions"
   type        = list(string)
   default     = ["layer-test1", "layer-test2"]
 }
 
+
+
+
+variable "aws_s3_bucket_notification_enabled" {
+  type        = bool
+  default     = false
+}
+variable "aws_s3_bucket_notification_name" {
+  type        = string
+}
