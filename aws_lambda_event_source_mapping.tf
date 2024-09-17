@@ -37,7 +37,7 @@ resource "aws_lambda_permission" "allow_s3_to_call_lambda" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda.function_name
   principal     = "s3.amazonaws.com"
-  source_arn    = data.aws_s3_bucket.aws_s3_bucket_notification_name[each.key].arn
+  source_arn    = data.aws_s3_bucket.aws_s3_bucket_notification_name[0].arn
 }
 
 
