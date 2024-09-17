@@ -43,5 +43,6 @@ resource "aws_lambda_permission" "allow_s3_to_call_lambda" {
 
 
 data "aws_s3_bucket" "aws_s3_bucket_notification_name" {
+  count = var.aws_s3_bucket_notification_enabled ? 1 : 0  
   bucket = var.aws_s3_bucket_notification_name
 }

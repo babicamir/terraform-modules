@@ -77,7 +77,7 @@ variable "provisioned_concurrent_executions" {
 variable "lambda_layers" {
   description = "List of Lambda layer versions"
   type        = list(string)
-  default     = ["layer-test1", "layer-test2"]
+  default     = [""]
 }
 
 
