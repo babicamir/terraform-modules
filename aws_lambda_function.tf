@@ -45,6 +45,6 @@ resource "aws_lambda_function" "lambda" {
 }
 
 data "aws_lambda_layer_version" "lambda" {
-  for_each = toset(var.lambda_layer_versions)
+  for_each = toset(var.lambda_layers)
   layer_name = each.value
 }
