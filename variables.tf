@@ -86,7 +86,7 @@ variable "layers" {
 variable "lambda_layer_versions" {
   description = "List of Lambda layer versions"
   type        = list(string)
-  default     = ["layer_version_1", "layer_version_2", "layer_version_3"]
+  default     = ["layer-test1", "layer-test2"]
 }
 
 # resource "aws_lambda_layer_version" "example" {
@@ -100,8 +100,3 @@ variable "lambda_layer_versions" {
 # }
 
 
-
-data "aws_lambda_layer_version" "existing" {
-  for_each = toset(var.lambda_layer_versions)
-  layer_name = each.value
-}
