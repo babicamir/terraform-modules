@@ -48,7 +48,7 @@ resource "aws_lambda_function" "lambda" {
   }
 
   layers        = [
-    data.aws_lambda_layer_version.instabot[0].arn
+    data.aws_lambda_layer_version.instabot.arn
     ]
 }
 
