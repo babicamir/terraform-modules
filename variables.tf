@@ -89,4 +89,5 @@ variable "aws_s3_bucket_notification_enabled" {
 }
 variable "aws_s3_bucket_notification_name" {
   type        = string
+  default = ""
 }
