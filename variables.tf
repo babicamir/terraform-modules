@@ -76,27 +76,9 @@ variable "provisioned_concurrent_executions" {
   default     = -1
 }
 
-variable "layers" {
-  description = "List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function."
-  type        = list(string)
-  default     = null
-}
-
-
-variable "lambda_layer_versions" {
+variable "lambda_layers" {
   description = "List of Lambda layer versions"
   type        = list(string)
   default     = ["layer-test1", "layer-test2"]
 }
-
-# resource "aws_lambda_layer_version" "example" {
-#   for_each = toset(var.lambda_layer_versions)
-
-#   layer_name  = each.value
-#   description = "Lambda layer version ${each.value}"
-#   compatible_runtimes = ["python3.8"]
-#   s3_bucket = "my-bucket"
-#   s3_key    = "path/to/my-layer.zip"
-# }
-
 
