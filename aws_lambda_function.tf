@@ -16,7 +16,7 @@ resource "aws_lambda_function" "lambda" {
   runtime       = var.runtime
   memory_size   = var.memory_size
   timeout       = var.timeout
-  layers        = var.layers
+  
   ephemeral_storage {
     size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
   }
@@ -40,18 +40,23 @@ resource "aws_lambda_function" "lambda" {
       variables = var.environment_variables
     }
   }
-
-
-
-
-
   tags = {
     Name         = "${var.project-name}-${var.env}-${var.name}"
     BackupPolicy = "n/a"
     AccessTier   = "private"
     CostType     = "lambda"
   }
+
+  layers        = [data.aws_lambda_layer_version.instabot[0].arn]
 }
+
+
+
+data "aws_lambda_layer_version" "instabot" {
+  for_each = toset(var.lambda_layer_versions)
+  layer_name = each.value
+}
+
 
 # resource "aws_lambda_permission" "lambda" {
 #   statement_id  = "AllowExecutionFromS3Bucket"

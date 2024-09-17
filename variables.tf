@@ -81,3 +81,27 @@ variable "layers" {
   type        = list(string)
   default     = null
 }
+
+
+variable "lambda_layer_versions" {
+  description = "List of Lambda layer versions"
+  type        = list(string)
+  default     = ["layer_version_1", "layer_version_2", "layer_version_3"]
+}
+
+# resource "aws_lambda_layer_version" "example" {
+#   for_each = toset(var.lambda_layer_versions)
+
+#   layer_name  = each.value
+#   description = "Lambda layer version ${each.value}"
+#   compatible_runtimes = ["python3.8"]
+#   s3_bucket = "my-bucket"
+#   s3_key    = "path/to/my-layer.zip"
+# }
+
+
+
+data "aws_lambda_layer_version" "existing" {
+  for_each = toset(var.lambda_layer_versions)
+  layer_name = each.value
+}
