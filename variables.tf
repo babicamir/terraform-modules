@@ -91,7 +91,9 @@ variable "aws_s3_bucket_notification_name" {
   type        = string
   default = ""
 }
-
+variable "aws_s3_bucket_notification_events" {
+  default = ["s3:ObjectCreated:*"]
+}
 variable "aws_s3_bucket_notification_filter_prefix" {
   type        = string
   default = ""
