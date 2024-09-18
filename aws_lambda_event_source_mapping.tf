@@ -35,7 +35,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
     #id = "lambda-${var.project-name}-${var.env}-${var.name}"
     lambda_function_arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
     events              = var.aws_s3_bucket_notification_events
-    filter_prefix       = var.aws_s3_bucket_notification_filter_prefix
+    filter_prefix       = "Folder4/"
     filter_suffix       = var.aws_s3_bucket_notification_filter_suffix 
   }
 
