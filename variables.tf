@@ -103,3 +103,23 @@ variable "aws_s3_bucket_notification_filter_suffix" {
   default = ""
 }
 
+
+
+
+
+
+
+variable "aws_lambda_event_source_dynamodb_stream_enabled" {
+  type        = bool
+  default     = false
+}
+variable "aws_lambda_event_source_dynamodb_name" {
+  type        = string
+  default = ""
+}
+
+
+
+
+
+
