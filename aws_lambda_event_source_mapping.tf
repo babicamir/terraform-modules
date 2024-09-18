@@ -35,7 +35,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 
 resource "aws_lambda_permission" "allow_s3_to_call_lambda" {
   count = var.aws_s3_bucket_notification_enabled ? 1 : 0
-  statement_id  = "AllowS3Invoke"
+  statement_id  = "AllowS3Invoke-${var.env}-${var.name}"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda.function_name
   principal     = "s3.amazonaws.com"
