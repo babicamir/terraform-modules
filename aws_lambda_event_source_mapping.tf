@@ -24,7 +24,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
   bucket = var.aws_s3_bucket_notification_name
 
   lambda_function {
-    id = "lambda-${var.project-name}-${var.env}-${var.name}"
+    #id = "lambda-${var.project-name}-${var.env}-${var.name}"
     lambda_function_arn = aws_lambda_function.lambda.arn
     events              = var.aws_s3_bucket_notification_events
     filter_prefix       = var.aws_s3_bucket_notification_filter_prefix
