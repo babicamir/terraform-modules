@@ -5,12 +5,6 @@ resource "aws_lambda_event_source_mapping" "dynamodb" {
   starting_position = "LATEST"
 }
 
-
-
-
-
-
-
 data "aws_dynamodb_table" "dynamodb" {
   count = var.aws_s3_bucket_notification_enabled ? 1 : 0
   name = var.aws_lambda_event_source_dynamodb_name

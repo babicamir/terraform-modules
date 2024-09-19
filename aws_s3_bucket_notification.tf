@@ -1,29 +1,59 @@
 
-resource "aws_s3_bucket_notification" "bucket_notification" {
-  count = var.aws_s3_bucket_notification_enabled ? 1 : 0
+# resource "aws_s3_bucket_notification" "bucket_notification" {
+#   count = var.aws_s3_bucket_notification_enabled ? 1 : 0
+#   bucket = var.aws_s3_bucket_notification_name
+
+#   lambda_function {
+#     #id = "lambda-${var.project-name}-${var.env}-${var.name}"
+#     lambda_function_arn = aws_lambda_function.lambda.arn
+#     events              = var.aws_s3_bucket_notification_events
+#     filter_prefix       = var.aws_s3_bucket_notification_filter_prefix
+#     filter_suffix       = var.aws_s3_bucket_notification_filter_suffix 
+#   }
+
+#   lambda_function {
+#     #id = "lambda-${var.project-name}-${var.env}-${var.name}"
+#     lambda_function_arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
+#     events              = var.aws_s3_bucket_notification_events
+#     filter_prefix       = "Folder4/"
+#     filter_suffix       = var.aws_s3_bucket_notification_filter_suffix 
+#   }
+ 
+#   depends_on = [aws_lambda_permission.allow_s3_to_call_lambda]
+# }
+
+resource "aws_s3_bucket_notification" "example" {
   bucket = var.aws_s3_bucket_notification_name
 
-  lambda_function {
-    #id = "lambda-${var.project-name}-${var.env}-${var.name}"
-    lambda_function_arn = aws_lambda_function.lambda.arn
-    events              = var.aws_s3_bucket_notification_events
-    filter_prefix       = var.aws_s3_bucket_notification_filter_prefix
-    filter_suffix       = var.aws_s3_bucket_notification_filter_suffix 
+  dynamic "lambda_function" {
+    for_each = local.lambda_notifications
+    content {
+      id            = lambda_function.value.id
+      lambda_function_arn = lambda_function.value.arn
+      events        = ["s3:ObjectCreated:*"]
+      # Add filter or other parameters if needed
+    }
   }
 
-  lambda_function {
-    #id = "lambda-${var.project-name}-${var.env}-${var.name}"
-    lambda_function_arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
-    events              = var.aws_s3_bucket_notification_events
-    filter_prefix       = "Folder4/"
-    filter_suffix       = var.aws_s3_bucket_notification_filter_suffix 
-  }
-
-
-
-  
-  depends_on = [aws_lambda_permission.allow_s3_to_call_lambda]
+  # Other blocks like 'queue' or 'topic' can be added here too
 }
+
+
+locals {
+  lambda_notifications = {
+    lambda1 = {
+      id  = "test3"
+      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test3"
+    }
+    lambda2 = {
+      id  = "test4"
+      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
+    }
+  }
+}
+
+
+
 
 resource "aws_lambda_permission" "allow_s3_to_call_lambda" {
   count = var.aws_s3_bucket_notification_enabled ? 1 : 0
