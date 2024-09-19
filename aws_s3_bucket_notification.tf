@@ -31,6 +31,7 @@ resource "aws_s3_bucket_notification" "example" {
       id            = lambda_function.value.id
       lambda_function_arn = lambda_function.value.arn
       events        = ["s3:ObjectCreated:*"]
+      filter_prefix       = lambda_function.value.filter_prefix
       # Add filter or other parameters if needed
     }
   }
