@@ -50,7 +50,7 @@ locals {
     lambda2 = {
       id  = "test4"
       arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
-      filter_prefix       = "Folder3/"
+      filter_prefix       = "Folder4/"
     }
  
   }
