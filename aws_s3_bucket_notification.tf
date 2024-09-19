@@ -56,15 +56,10 @@ locals {
   }
 }
 
-data "aws_ssm_parameter" "foo" {
-  name = "foo"
+data "aws_ssm_parameter" "s3-lambda-trigger" {
+  name = "/s3-lambda-trigger/json"
 }
-
-resource "aws_ssm_parameter" "s3-lambda-trigger" {
-  name  = "foo"
-  type  = "String"
-  value = "bar"
-}
+ 
 
 resource "aws_ssm_parameter" "s3-lambda-trigger" {
   name  = "/s3-lambda-trigger/json"
