@@ -40,20 +40,25 @@ resource "aws_s3_bucket_notification" "example" {
 }
 
 
-locals {
-  lambda_notifications = {
-    lambda1 = {
-      id  = "test3"
-      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test3"
-      filter_prefix       = "Folder3/"
-    }
-    lambda2 = {
-      id  = "test4"
-      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
-      filter_prefix       = "Folder4/"
-    }
+# locals {
+#   lambda_notifications = {
+#     lambda1 = {
+#       id  = "test3"
+#       arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test3"
+#       filter_prefix       = "Folder3/"
+#     }
+#     lambda2 = {
+#       id  = "test4"
+#       arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
+#       filter_prefix       = "Folder4/"
+#     }
  
-  }
+#   }
+# }
+
+
+locals {
+  lambda_notifications = jsondecode(data.aws_ssm_parameter.lambda_ssm.value)
 }
 
 data "aws_ssm_parameter" "s3-lambda-trigger" {
@@ -67,8 +72,6 @@ resource "aws_ssm_parameter" "s3-lambda-trigger" {
   name  = "/s3-lambda-trigger/json"
   type  = "String"  # Can also be 'SecureString' for encrypted values
   value = jsonencode({
-    key1 = "value1"
-    key2 = "value2"
     lambda2 = {
       id  = "test4"
       arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
