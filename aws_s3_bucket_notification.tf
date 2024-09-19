@@ -58,7 +58,7 @@ resource "aws_s3_bucket_notification" "example" {
 
 
 locals {
-  lambda_notifications = jsondecode(data.aws_ssm_parameter.lambda_ssm.value)
+  lambda_notifications = jsondecode(data.aws_ssm_parameter.s3-lambda-trigger.value)
 }
 
 data "aws_ssm_parameter" "s3-lambda-trigger" {
