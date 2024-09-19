@@ -72,10 +72,17 @@ resource "aws_ssm_parameter" "s3-lambda-trigger" {
   name  = "/s3-lambda-trigger/json"
   type  = "String"  # Can also be 'SecureString' for encrypted values
   value = jsonencode({
-    lambda2 = {
-      id  = "test4"
-      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
-      filter_prefix       = "Folder3/"
+    lambda_notifications {
+      lambda3 = {
+        id  = "test3"
+        arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test3"
+        filter_prefix       = "Folder3/"
+      },
+      lambda4 = {
+        id  = "test4"
+        arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
+        filter_prefix       = "Folder3/"
+      }
     }
   })
   description = "A sample JSON object stored in SSM Parameter Store"
