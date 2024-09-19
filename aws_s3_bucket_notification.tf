@@ -56,6 +56,30 @@ locals {
   }
 }
 
+data "aws_ssm_parameter" "foo" {
+  name = "foo"
+}
+
+resource "aws_ssm_parameter" "s3-lambda-trigger" {
+  name  = "foo"
+  type  = "String"
+  value = "bar"
+}
+
+resource "aws_ssm_parameter" "s3-lambda-trigger" {
+  name  = "/s3-lambda-trigger/json"
+  type  = "String"  # Can also be 'SecureString' for encrypted values
+  value = jsonencode({
+    key1 = "value1"
+    lambda2 = {
+      id  = "test4"
+      arn = "arn:aws:lambda:us-east-1:647692764445:function:solution-1-dev-test4"
+      filter_prefix       = "Folder3/"
+    })
+  description = "A sample JSON object stored in SSM Parameter Store"
+}
+
+
 
 
 
