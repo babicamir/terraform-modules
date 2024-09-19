@@ -56,9 +56,10 @@ locals {
   }
 }
 
-# data "aws_ssm_parameter" "s3-lambda-trigger" {
-#   name = "/s3-lambda-trigger/json"
-# }
+data "aws_ssm_parameter" "s3-lambda-trigger" {
+  name = "/s3-lambda-trigger/json"
+  depends_on = [aws_ssm_parameter.s3-lambda-trigger]
+}
  
 
 
