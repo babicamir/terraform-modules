@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/${var.project-name}-${var.env}-${var.name}"
-  retention_in_days = var.log_retention_days
+  retention_in_days = var.log-retention-days
   tags = {
     CostType = "logs"
   }
@@ -14,26 +14,26 @@ resource "aws_lambda_function" "lambda" {
   architectures = var.architectures
   handler       = var.handler
   runtime       = var.runtime
-  memory_size   = var.memory_size
+  memory_size   = var.memory-size
   timeout       = var.timeout
-  layers        = [for layer in data.aws_lambda_layer_version.lambda : layer.arn]
+  layers        = [for layer in data.aws-lambda-layer-version.lambda : layer.arn]
   ephemeral_storage {
-    size = var.ephemeral_storage_size // Ephemeral storage min 512 MB max 10240 MB
+    size = var.ephemeral-storage-size // Ephemeral storage min 512 MB max 10240 MB
   }
   vpc_config {
-    subnet_ids         = var.subnet_ids
-    security_group_ids = var.security_group_ids
+    subnet_ids         = var.subnet-ids
+    security_group_ids = var.security-group-ids
   }
   dynamic "tracing_config" {
-    for_each = var.tracing_mode == null ? [] : [true]
+    for_each = var.tracing-mode == null ? [] : [true]
     content {
-      mode = var.tracing_mode
+      mode = var.tracing-mode
     }
   }
   dynamic "environment" {
-    for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]
+    for_each = length(keys(var.environment-variables)) == 0 ? [] : [true]
     content {
-      variables = var.environment_variables
+      variables = var.environment-variables
     }
   }
   tags = {
@@ -45,6 +45,6 @@ resource "aws_lambda_function" "lambda" {
 }
 
 data "aws_lambda_layer_version" "lambda" {
-  for_each = toset(var.lambda_layers)
+  for_each = toset(var.lambda-layers)
   layer_name = each.value
 }

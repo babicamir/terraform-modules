@@ -1,3 +1,0 @@
-output "iam-user" {
-  value = aws_iam_user.iam-user
-}
