@@ -20,7 +20,7 @@ variable "aws-region" {
 
 
 ##########################################################
-# Lambda Variables
+# Variables
 ##########################################################
 variable "lambda-role" {
   type        = string
