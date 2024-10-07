@@ -1,5 +1,5 @@
 resource "aws_lambda_layer_version" "lambda" {
-  count = var.enable_lambda_layer ? 1 : 0
+  count = var.enable-lambda-layer ? 1 : 0
   layer_name          = "${var.project-name}-${var.env}-${var.name}"
   description         = var.lambda-layer-description
   compatible_runtimes = ["${var.runtime}"]
