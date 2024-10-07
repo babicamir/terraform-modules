@@ -50,19 +50,7 @@ variable "ephemeral-storage-size" {
 variable "log-retention-days" {
   type        = string
 }
-variable "enable-lambda-layer" {
-  type        = bool
-  default     = false
-}
 
-variable "lambda-layer-description" {
-  type        = string
-  default     = ""
-}
-variable "create-lambda-layer-version" {
-  type        = bool
-  default     = false
-}
 variable "environment-variables" {
 }
 variable "tracing-mode" {

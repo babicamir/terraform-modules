@@ -46,5 +46,5 @@ resource "aws_lambda_function" "lambda" {
 
 data "aws_lambda_layer_version" "lambda" {
   for_each = toset(var.lambda-layers)
-  layer_name = each.value
+  layer_name = "${var.project-name}-${var.env}-${each.value}"
 }
